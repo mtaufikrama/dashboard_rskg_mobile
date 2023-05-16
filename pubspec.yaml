@@ -8,6 +8,9 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
+  fl_chart: ^0.62.0
+  dropdown_search: ^5.0.6
+
   flutter: 
     sdk: flutter
 

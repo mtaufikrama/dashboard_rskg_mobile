@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Application",
+      title: "Dashboard RSKG",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     );

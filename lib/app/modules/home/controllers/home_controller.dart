@@ -18,4 +18,9 @@ class HomeController extends GetxController {
     'November',
     'Desember',
   ];
+  @override
+  void onInit() {
+    selectedValue.value = items.first;
+    super.onInit();
+  }
 }

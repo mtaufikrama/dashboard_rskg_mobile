@@ -10,15 +10,18 @@ class WidgetTitle3 extends StatefulWidget {
 
 class _WidgetTitle3State extends State<WidgetTitle3> {
   final List<String> items = [
-    '2015',
-    '2016',
-    '2017',
-    '2018',
-    '2019',
-    '2020',
-    '2021',
-    '2022',
-    '2023',
+    'January',
+    'Febuari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember',
   ];
   String? selectedValue;
   @override
@@ -42,7 +45,7 @@ class _WidgetTitle3State extends State<WidgetTitle3> {
             ),
             Expanded(
               child: Text(
-                'Pilih Hahun',
+                'Bulan',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,

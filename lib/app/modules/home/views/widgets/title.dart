@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 
-class WidgetTitlePoli extends StatefulWidget {
+class WidgetTitlePoli extends StatelessWidget {
   const WidgetTitlePoli({Key? key}) : super(key: key);
 
   @override
-  _WidgetTitlePoliState createState() => _WidgetTitlePoliState();
-}
-
-class _WidgetTitlePoliState extends State<WidgetTitlePoli> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20, 0, 10, 0),
+      padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
       child: Row(
         children: [
-          Expanded(
-            child: Text("Dashboard",style: TextStyle (fontSize: 20, fontWeight: FontWeight.bold),),
+          const Expanded(
+            child: Text(
+              "Dashboard",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Image.asset(
@@ -34,7 +32,7 @@ class _WidgetTitlePoliState extends State<WidgetTitlePoli> {
           //     fontSize: MyFontSize.medium1,
           //   ),
           // ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           // Icon(Icons.arrow_forward_ios_outlined, size: 15,)

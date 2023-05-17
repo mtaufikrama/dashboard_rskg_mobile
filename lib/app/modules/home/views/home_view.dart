@@ -1,6 +1,6 @@
 import 'package:dashboard_rskg_mobile/app/modules/home/views/widgets/logo.dart';
-import 'package:dashboard_rskg_mobile/app/modules/home/views/widgets/menu.dart';
-import 'package:dashboard_rskg_mobile/app/modules/home/views/widgets/menu2.dart';
+import 'package:dashboard_rskg_mobile/app/modules/home/views/widgets/dashboard.dart';
+import 'package:dashboard_rskg_mobile/app/modules/home/views/widgets/static_lainnya.dart';
 import 'package:dashboard_rskg_mobile/app/modules/home/views/widgets/title2.dart';
 import 'package:dashboard_rskg_mobile/app/modules/home/views/widgets/title3.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class HomeView extends GetView<HomeController> {
               height: 10,
             ),
             WidgetTitlePoli1(),
-            HomePage(),
+            DashBoard(),
             SizedBox(
               height: 10,
             ),

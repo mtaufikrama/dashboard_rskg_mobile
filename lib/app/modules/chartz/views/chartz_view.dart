@@ -16,49 +16,45 @@ class ChartzView extends GetView<ChartzController> {
         title: Text('Grafik ${controller.title}'),
         centerTitle: false,
       ),
-      body: AspectRatio(
-        aspectRatio: 1,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              const Text("Grafik Berdasarkan :",
-                  style: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.black45,
-                      fontWeight: FontWeight.bold)),
-              const SizedBox(
-                height: 5,
-              ),
-              MyDropDown(items: controller.listTahun),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                controller.title.toUpperCase(),
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8),
-                  child: ChartzWidget(),
-                ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-            ],
+      body: ListView(
+        children: <Widget>[
+          const Text("Grafik Berdasarkan :",
+              style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.black45,
+                  fontWeight: FontWeight.bold)),
+          const SizedBox(
+            height: 5,
           ),
-        ),
+          MyDropDown(items: controller.listTahun),
+          const SizedBox(
+            height: 10,
+          ),
+          Text(
+            controller.title.toUpperCase(),
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Expanded(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: ChartzWidget(),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+        ],
       ),
     );
   }

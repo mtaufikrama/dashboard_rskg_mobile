@@ -1,10 +1,8 @@
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../chartz_total_pasien/controllers/chartz_controller.dart';
-
+import '../../../chartz/controllers/chartz_controller.dart';
 
 class ChartzWidget extends StatefulWidget {
   const ChartzWidget({

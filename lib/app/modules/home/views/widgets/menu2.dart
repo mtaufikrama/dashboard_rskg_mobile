@@ -1,72 +1,96 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../routes/app_pages.dart';
 
-class HomePage2 extends StatefulWidget {
-  @override
-  _HomePage2 createState() => _HomePage2();
-}
+class StaticLainnya extends StatelessWidget {
+  const StaticLainnya({super.key});
 
-class _HomePage2 extends State<HomePage2> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 140,
-              child: Row(
-                children: [
-                  GestureDetector(
-                  onTap: (){ Get.toNamed(Routes.CHARTZ_KEUNGAN);},
-                  child : Container(
-                    height: 80,
-                    width: MediaQuery.of(context).size.width / 1 - 30, // minus 32 due to the margin
-                    margin: EdgeInsets.only(left: 16.0),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfff5f5f5), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 22,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/total_pasien.svg',
-                                height: 30,
-                                width: 30,
-                                color: Colors.blue,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text("Keuangan", style: TextStyle(fontSize: 16.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  ),
-                ],
+    return const Column(
+      children: [
+        SizedBox(height: 15),
+        CardStaticLainnya(
+          image: 'assets/images/icons/total_pasien.svg',
+          title: "Keuangan",
+        ),
+        SizedBox(height: 15),
+        CardStaticLainnya(
+          image: 'assets/images/icons/resep.svg',
+          title: "Obat",
+        ),
+        SizedBox(height: 15),
+      ],
+    );
+  }
+}
+
+class CardStaticLainnya extends StatelessWidget {
+  final String image;
+  final String title;
+  const CardStaticLainnya({
+    super.key,
+    required this.image,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Get.toNamed(Routes.CHARTZ);
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width / 1 - 30,
+            padding:
+                const EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
+            decoration: const BoxDecoration(
+              color: Color(0xfff5f5f5),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20.0),
+                bottomRight: Radius.circular(20.0),
+                topLeft: Radius.circular(20.0),
+                bottomLeft: Radius.circular(20.0),
               ),
             ),
-          ],
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 22,
+                      backgroundColor: Colors.white,
+                      child: SvgPicture.asset(
+                        image,
+                        height: 30,
+                        width: 30,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.brown,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
-      );
+      ],
+    );
   }
 }

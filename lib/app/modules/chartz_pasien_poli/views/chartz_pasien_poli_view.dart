@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../chartz_total_pasien/views/Widget/BarChartWidget.dart';
-import '../../chartz_total_pasien/views/Widget/dropdown_widget.dart';
+import '../../chartz/views/Widget/BarChartWidget.dart';
+import '../../chartz/views/Widget/dropdown_widget.dart';
 import '../controllers/chartz_pasien_poli_controller.dart';
 
 class ChartzPasienPoliView extends GetView<ChartzPasienPoliController> {
@@ -23,7 +23,11 @@ class ChartzPasienPoliView extends GetView<ChartzPasienPoliController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Text("Grafik Berdasarkan :", style: TextStyle(fontSize: 14.0, color: Colors.black45, fontWeight: FontWeight.bold)),
+              Text("Grafik Berdasarkan :",
+                  style: TextStyle(
+                      fontSize: 14.0,
+                      color: Colors.black45,
+                      fontWeight: FontWeight.bold)),
               SizedBox(
                 height: 5,
               ),

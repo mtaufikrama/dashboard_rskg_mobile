@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../routes/app_pages.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePage createState() => _HomePage();
 }
@@ -14,367 +14,231 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
+      child: Column(
+        children: [
+          CardWidget(
+            imageKiri: 'assets/images/icons/total_pasien.svg',
+            titleKiri: "Total Pasien",
+            valueKiri: "1.345",
+            imageKanan: 'assets/images/icons/pasien_poli.svg',
+            titleKanan: "Pasien Poliklinik",
+            valueKanan: "460",
+          ),
+          SizedBox(height: 15),
+          CardWidget(
+            imageKiri: 'assets/images/icons/hemode.svg',
+            titleKiri: "Pasien Hemodialisa",
+            valueKiri: "840",
+            imageKanan: 'assets/images/icons/igd.svg',
+            titleKanan: "Pasien IGD",
+            valueKanan: "242",
+          ),
+          SizedBox(height: 15),
+          CardWidget(
+            imageKiri: 'assets/images/icons/labro.svg',
+            titleKiri: "Laboratorium",
+            valueKiri: "200",
+            imageKanan: 'assets/images/icons/resep.svg',
+            titleKanan: "Jumlah Resep",
+            valueKanan: "120",
+          ),
+          SizedBox(height: 15),
+          CardWidget(
+            imageKiri: 'assets/images/icons/bpjs.svg',
+            titleKiri: "Pasien BPJS",
+            valueKiri: "1.098",
+            imageKanan: 'assets/images/icons/total_pasien.svg',
+            titleKanan: "Pasien Umum",
+            valueKanan: "200",
+            color: 0xffddfae4,
+          ),
+          SizedBox(height: 15),
+        ],
+      ),
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  final String titleKanan;
+  final String valueKanan;
+  final String imageKanan;
+  final String titleKiri;
+  final String valueKiri;
+  final String imageKiri;
+  final int? color;
+  const CardWidget({
+    super.key,
+    required this.titleKanan,
+    required this.valueKanan,
+    required this.imageKanan,
+    required this.titleKiri,
+    required this.valueKiri,
+    required this.imageKiri,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        CardKiri(
+          image: imageKiri,
+          title: titleKiri,
+          value: valueKiri,
+          color: color,
+        ),
+        CardKanan(
+          image: imageKanan,
+          title: titleKanan,
+          value: valueKanan,
+          color: color,
+        ),
+      ],
+    );
+  }
+}
+
+class CardKanan extends StatelessWidget {
+  final String title;
+  final String value;
+  final String image;
+  final int? color;
+  const CardKanan({
+    super.key,
+    required this.title,
+    required this.value,
+    required this.image,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(Routes.CHARTZ, parameters: {'title': title});
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2 - 19,
+        margin: const EdgeInsets.only(left: 16.0),
+        padding:
+            const EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
+        decoration: BoxDecoration(
+          color: Color(color ?? 0xfff6f5f5),
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(20.0),
+            bottomRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+          ),
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 150,
-              child: Row(
-                children: [
-                  GestureDetector(
-                  onTap: (){ Get.toNamed(Routes.CHARTZ);},
-                  child : Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width / 2 - 25, // minus 32 due to the margin
-                    margin: EdgeInsets.only(left: 16.0),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfff6f5f5), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("             ", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/total_pasien.svg',
-                                height: 30,
-                                width: 30,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // place here your image
-                        Text("1.345", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                        Text("Total Pasien", style: TextStyle(fontSize: 15.0, color: Color(0xff4babe7))),
-                      ],
-                    ),
-                  ),
-                  ),
-      GestureDetector(
-        onTap: (){ Get.toNamed(Routes.CHARTZ_PASIEN_POLI);},
-        child : Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width / 2 - 19, // minus 32 due to the margin
-                    margin: EdgeInsets.only(left: 16.0),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfff6f5f5), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("              ", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/pasien_poli.svg',
-                                height: 30,
-                                width: 30,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // place here your image
-                        Text("460", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                        Text("Pasien Poliklinik", style: TextStyle(fontSize: 15.0, color: Color(0xff4babe7))),
-                      ],
-                    ),
-                  ),
-      ),
-                ],
+            Align(
+              alignment: Alignment.topRight,
+              child: CircleAvatar(
+                radius: 32,
+                backgroundColor: Colors.white,
+                child: SvgPicture.asset(
+                  image,
+                  height: 30,
+                  width: 30,
+                  color: Colors.blue,
+                ),
               ),
             ),
-            Container(
-              height: 150,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: (){ Get.toNamed(Routes.CHARTZ_PASIEN_HEMODIALISA);},
-              child : Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width / 2 - 25, // minus 32 due to the margin
-                margin: EdgeInsets.only(left: 16.0,top: 10),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 5, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfff6f5f5), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("             ", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/hemode.svg',
-                                height: 30,
-                                width: 30,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // place here your image
-                        Text("840", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                        Text("Pasien Hemodialisa", style: TextStyle(fontSize: 15.0, color: Color(0xff4babe7))),
-                      ],
-                    ),
-                  ),
-                  ),
-      GestureDetector(
-        onTap: (){ Get.toNamed(Routes.CHARTZ_PASIEN_IGD);},
-        child : Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width / 2 - 19, // minus 32 due to the margin
-          margin: EdgeInsets.only(left: 16.0,top: 10),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfff6f5f5), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("              ", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/igd.svg',
-                                height: 30,
-                                width: 30,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // place here your image
-                        Text("242", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                        Text("Pasien IGD", style: TextStyle(fontSize: 15.0, color: Color(0xff4babe7))),
-                      ],
-                    ),
-                  ),
-      ),
-                ],
+            Text(
+              value,
+              style: const TextStyle(
+                fontSize: 20.0,
+                color: Colors.brown,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
-              height: 150,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: (){ Get.toNamed(Routes.CHARTZ_LABORATORIUM);},
-              child : Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width / 2 - 25, // minus 32 due to the margin
-                margin: EdgeInsets.only(left: 16.0,top: 10),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfff6f5f5), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("             ", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/labro.svg',
-                                height: 30,
-                                width: 30,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // place here your image
-                        Text("280", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                        Text("Laboratorium", style: TextStyle(fontSize: 15.0, color: Color(0xff4babe7))),
-                      ],
-                    ),
-                  ),
-                  ),
-      GestureDetector(
-        onTap: (){ Get.toNamed(Routes.CHARTZ_JUMLAH_RESEP);},
-        child : Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width / 2 - 19, // minus 32 due to the margin
-          margin: EdgeInsets.only(left: 16.0,top: 10),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xfff6f5f5), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("              ", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/resep.svg',
-                                height: 50,
-                                width: 50,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // place here your image
-                        Text("120", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                        Text("Jumlah Resep", style: TextStyle(fontSize: 15.0, color: Color(0xff4babe7))),
-                      ],
-                    ),
-                  ),
-      ),
-                ],
-              ),
-            ),
-            Container(
-              height: 150,
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: (){ Get.toNamed(Routes.CHARTZ_PASIEN_BPJS);},
-              child : Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width / 2 - 25, // minus 32 due to the margin
-                margin: EdgeInsets.only(left: 16.0,top: 10),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xffddfae4), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("             ", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/bpjs.svg',
-                                height: 260,
-                                width: 260,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // place here your image
-                        Text("1.008", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                        Text("Pasien BPJS", style: TextStyle(fontSize: 15.0, color: Color(0xff4babe7))),
-                      ],
-                    ),
-                  ),
-                  ),
-      GestureDetector(
-        onTap: (){ Get.toNamed(Routes.CHARTZ_PASIEN_UMUM);},
-        child : Container(
-                    height: 140,
-                    width: MediaQuery.of(context).size.width / 2 - 19, // minus 32 due to the margin
-          margin: EdgeInsets.only(left: 16.0,top: 10),
-                    padding: EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xffddfae4), // background color of the cards
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20.0),
-                          bottomRight: Radius.circular(20.0),
-                          topLeft: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end, // posion the everything to the bottom
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("              ", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                            CircleAvatar(
-                              radius: 32,
-                              backgroundColor: Colors.white,
-                              child: SvgPicture.asset(
-                                'assets/images/icons/total_pasien.svg',
-                                height: 30,
-                                width: 30,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ],
-                        ),
-                        // place here your image
-                        Text("336", style: TextStyle(fontSize: 20.0, color: Colors.brown, fontWeight: FontWeight.bold)),
-                        Text("Pasien Umum", style: TextStyle(fontSize: 15.0, color: Color(0xff4babe7))),
-                      ],
-                    ),
-                  ),
-      ),
-                ],
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 15.0,
+                color: Color(0xff4babe7),
               ),
             ),
           ],
         ),
-      );
+      ),
+    );
+  }
+}
+
+class CardKiri extends StatelessWidget {
+  final String title;
+  final String value;
+  final String image;
+  final int? color;
+  const CardKiri({
+    super.key,
+    required this.title,
+    required this.value,
+    required this.image,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(Routes.CHARTZ, parameters: {'title': title});
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2 - 25,
+        margin: const EdgeInsets.only(left: 16.0),
+        padding:
+            const EdgeInsets.only(right: 16, left: 16, bottom: 20, top: 10),
+        decoration: BoxDecoration(
+          color: Color(color ?? 0xfff6f5f5),
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(20.0),
+            bottomRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: CircleAvatar(
+                radius: 32,
+                backgroundColor: Colors.white,
+                child: SvgPicture.asset(
+                  image,
+                  height: 30,
+                  width: 30,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            Text(
+              value,
+              style: const TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.brown,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 15.0,
+                color: Color(0xff4babe7),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
